@@ -1,8 +1,44 @@
 <!doctype html>
+<head>
+  <meta charset="utf-8" />
+  <title>microstack</title>
+
+  <link href="{{ url_for('static', filename='css/base.css') }}"
+        rel="stylesheet"
+  />
+</head>
 <body>
+
+  <div id="header-container">
+    <div id="header">
+      <span class="_middle-in-box"><h1>header</h1></span>
+    </div>
+  </div>
+
   <div class="container">
-    <a href="{{ url_for('index') }}">Index</a>
-    <a href="{{ url_for('movie_mainpage') }}">Movie mainpage</a>
-    <a href="{{ url_for('actor_mainpage') }}">actors mainpage</a>
+ 
+    <div class="content-wrapper">
+      <div class="content">
+        <a href="{{ url_for('index') }}">서비스1: index</a>
+      </div>
+      <div class="content">     
+        <a href="{{ url_for('movie_mainpage') }}">서비스 2: Movie mainpage</a>
+      </div>
+      <div class="content">
+        <a href="{{ url_for('actor_mainpage') }}">서비스 3: actors mainpage</a>
+      </div>
+      <div class="content">
+        <a href="#">서비스 4:</a>
+      </div>
+      <div class="content">
+        <a href="#">서비스 5:</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-container">
+    <div id="footer">
+      <span class="_middle-in-box"><h1>footer</h1></span>
+    </div>
   </div>
 </body>
