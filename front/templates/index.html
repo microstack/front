@@ -42,16 +42,27 @@ Aliquam elementum non augue id vestibulum. Integer eu dolor quis erat hendrerit 
         <div class="content">
           <a href="#">서비스 4:</a>
         </div>
-        <div class="content">
+        <div class="content load-other-page">
           <a href="#">서비스 5:</a>
-        </div>
+          <div class="load-other-page">
+          </div>
+         </div>
       </div>
     </div>
-  
+
     <div id="footer-container">
       <div id="footer">
         <span class="_middle-in-box"><h1>footer</h1></span>
       </div>
     </div>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"
+          integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+          crossorigin="anonymous">
+  </script>
+
+  <script>
+    $(".load-other-page").load("/other-page/");
+  </script>
 </body>

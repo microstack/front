@@ -23,5 +23,9 @@ def movie_mainpage():
 def actor_mainpage():
     return 'Actor mainpage'
 
+@app.route('/other-page/')
+def other_page():
+    return 'Here from /other-page/'
+
 if __name__ == '__main__':
     app.run()
