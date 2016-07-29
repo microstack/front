@@ -60,9 +60,10 @@ Aliquam elementum non augue id vestibulum. Integer eu dolor quis erat hendrerit 
   <script src="https://code.jquery.com/jquery-3.1.0.min.js"
           integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
           crossorigin="anonymous">
+        </script>
+
+  <script src="{{ url_for('static', filename='js/jquery.base.js') }}"
+					type="text/javascript">
   </script>
 
-  <script>
-    $(".load-other-page").load("/other-page/");
-  </script>
 </body>
