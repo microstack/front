@@ -3,3 +3,6 @@ requests
 
 # utils
 ipython
+
+# web
+gunicorn
