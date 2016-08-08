@@ -6,6 +6,9 @@ from flask import Flask
 
 from settings import API_GW_BASE_URL
 
+app = Flask(__name__)
+
+
 def response_text_from_request(self, base_url, resource):
     response = requests.get(base_url + resource)
     text = response.text
