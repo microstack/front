@@ -1,5 +1,6 @@
 import requests
 import os
+import json
 
 from flask import render_template
 from flask import Flask
@@ -23,4 +24,7 @@ def movie_archive():
 
 @app.route('/movies/')
 def movie_mainpage():
-    return render_template('index.html')
+    text = response_text_from_request(API_GW_BASE_URL, '/movies/latest/')
+    objects = json.loads(text)
+    thumbnails = list(map(lambda x: x['thumbnail'], objects))
+    return render_template('index.html', thumbnails=thumbnails)
