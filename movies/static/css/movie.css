@@ -83,3 +83,8 @@ footer {
 ._pad-70 {
     padding-top: 70px;
 }
+
+.navbar-inner {
+	background: transparent;
+    background-color:rgba(0, 0, 0, 0.7);
+}
