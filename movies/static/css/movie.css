@@ -5,7 +5,6 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 .slide-image {
@@ -19,7 +18,7 @@ body {
 .carousel-control,
 .item {
     border-radius: 4px;
-    height: 500px;
+    height: 800px;
 }
 
 .caption {
@@ -54,6 +53,10 @@ footer {
     margin: 50px 0;
 }
 
-.corner-4 {
-    border: solid;
+.container-main {
+    position: relative;
+}
+
+._pad-70 {
+    padding-top: 70px;
 }
