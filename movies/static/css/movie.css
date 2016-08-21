@@ -18,7 +18,30 @@ body {
 .carousel-control,
 .item {
     border-radius: 4px;
-    height: 800px;
+}
+
+@media only screen and (max-width: 599px) {
+    /* For tablets: */
+	.carousel-control,
+	.item {
+	    max-height: 400px;
+	}
+}
+
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+	.carousel-control,
+	.item {
+	    max-height: 550px;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	/* For desktop: */
+	.carousel-control,
+	.item {
+	    max-height: 800px;
+	}
 }
 
 .caption {
