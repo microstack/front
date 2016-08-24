@@ -24,7 +24,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Theme CSS -->
-     <link href="{{ url_for('static', filename='css/agency.min.css') }}"
+     <link href="{{ url_for('static', filename='css/agency.css') }}"
            rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -37,6 +37,18 @@
 </head>
 
 <body id="page-top" class="index">
+
+
+    <!-- Header -->
+      <div id="header">
+          <div class="container">
+              <div class="intro-text">
+                  <div class="intro-lead-in">Welcome To Microstack!</div>
+                  <div class="intro-heading">It's Nice To Meet You</div>
+                  <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
+              </div>
+          </div>
+      </div>
 
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}">

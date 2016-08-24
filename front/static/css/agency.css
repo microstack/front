@@ -225,9 +225,14 @@ fieldset[disabled] .btn-xl.active {
     font-size: 1.5em;
   }
 }
-header {
-  background-image: url('../img/header-bg.jpg');
-  background-repeat: no-repeat;
+
+/* http://fiddle.jshell.net/crazyrohila/tczsC/ */
+#header {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  position: relative;
+
   background-attachment: scroll;
   background-position: center center;
   -webkit-background-size: cover;
@@ -235,20 +240,35 @@ header {
   background-size: cover;
   -o-background-size: cover;
   text-align: center;
-  color: white;
+  color: black;
 }
-header .intro-text {
+
+#header:after {
+  content: "";
+  background-image: url('http://hockleyphoto.com/wp-content/uploads/2013/05/oregon-convention-center-event-photography-1-950x629@2x.jpg');
+  background-repeat: no-repeat;
+  position: absolute;
+ 
+  z-index: -1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: .7; 
+}
+
+#header .intro-text {
   padding-top: 100px;
   padding-bottom: 50px;
 }
-header .intro-text .intro-lead-in {
+#header .intro-text .intro-lead-in {
   font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: italic;
   font-size: 22px;
   line-height: 22px;
   margin-bottom: 25px;
 }
-header .intro-text .intro-heading {
+#header .intro-text .intro-heading {
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
@@ -257,18 +277,18 @@ header .intro-text .intro-heading {
   margin-bottom: 25px;
 }
 @media (min-width: 768px) {
-  header .intro-text {
+  #header .intro-text {
     padding-top: 300px;
     padding-bottom: 200px;
   }
-  header .intro-text .intro-lead-in {
+  #header .intro-text .intro-lead-in {
     font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: italic;
     font-size: 40px;
     line-height: 40px;
     margin-bottom: 25px;
   }
-  header .intro-text .intro-heading {
+  #header .intro-text .intro-heading {
     font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
     font-weight: 700;
