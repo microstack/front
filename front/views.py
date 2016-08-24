@@ -9,11 +9,3 @@ import requests
 @app.route('/')
 def index():
     return render_template('index.html')
-
-@app.route('/actors/')
-def actor_mainpage():
-    return 'Actor mainpage'
-
-@app.route('/other-page/')
-def other_page():
-    return 'Here from /other-page/'
