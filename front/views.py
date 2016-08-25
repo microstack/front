@@ -14,7 +14,8 @@ def index():
             {
                 'img_file': 'movies.png',
                 'name': 'Micro Movie',
-                'text': 'lorem lorem'
+                'text': 'lorem lorem',
+                'tag': 'Movie',
             })
 
     return render_template('index.html', services=services)

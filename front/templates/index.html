@@ -32,7 +32,7 @@
     {% for service in services %}
 
         <div class="col-md-4 col-sm-6 services-item">
-            <a href="#servicesModal{{ loop.index }}" class="services-link" data-toggle="modal">
+            <a href="#servicesModal{{ service.tag }}" class="services-link" data-toggle="modal">
                   <div class="services-hover">
                       <div class="services-hover-content">
                         <i class="fa fa-plus fa-3x"></i>
@@ -52,42 +52,5 @@
 
 
     {% block modals %}
-      <!-- Services Modal 1 -->
-    <div class="services-modal modal fade" id="servicesModal1" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="close-modal" data-dismiss="modal">
-                      <div class="lr">
-                          <div class="rl">
-                          </div>
-                      </div>
-                  </div>
-                  <div class="container">
-                      <div class="row">
-                          <div class="col-lg-8 col-lg-offset-2">
-                              <div class="modal-body">
-                                  <!-- Project Details Go Here -->
-                                  <h2>Project Name</h2>
-                                  <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                  <img class="img-responsive img-centered" src="img/services/roundicons-free.png" alt="">
-                                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blan
-  ditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae,
-   nostrum, reiciendis facere nemo!</p>
-                                  <p>
-                                      <strong>Want these icons in this services item sample?</strong>You can download 60 of them for free, cou
-  rtesy of <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">RoundIcons.com</a>, or you can purchase the 1500 icon set <a
-   href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">here</a>.</p>
-                                  <ul class="list-inline">
-                                      <li>Date: July 2014</li>
-                                      <li>Client: Round Icons</li>
-                                      <li>Category: Graphic Design</li>
-                                  </ul>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-{% endblock %}
+        {% include "services/micro_movie.html" %}
+    {% endblock %}
