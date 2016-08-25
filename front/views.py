@@ -12,9 +12,9 @@ def index():
     for i in range(5):
         services.append(
             {
-                'img_file': 'abc.png',
-                'name': 'sample name',
-                'text': 'sample text'
+                'img_file': 'movies.png',
+                'name': 'Micro Movie',
+                'text': 'lorem lorem'
             })
 
     return render_template('index.html', services=services)

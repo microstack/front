@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-    <!-- Introductin Section -->
+    <!-- section1: introductin -->
     {% block section_heading %}Introduction
     {% endblock %}
     {% block section_subheading %}Lorem ipsum dolor sit amet consectetur.
@@ -27,7 +27,7 @@
     {% block intro_text3 %}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
     {% endblock %}
 
-
+    <!-- section2: services -->
     {% block services %}
     {% for service in services %}
 
@@ -38,11 +38,11 @@
                         <i class="fa fa-plus fa-3x"></i>
                       </div>
                   </div>
-                  <img src="img/services/{{ service.img_file }}" class="img-responsive" alt="">
+                  <img src="{{ url_for('static', filename='img/services/') }}{{ service['img_file'] }}" class="img-responsive" alt="">
             </a>
             <div class="services-caption">
-                <h4>{{ service.name }}</h4>
-                <p class="text-muted">{{ service.text }}</p>
+                <h4>{{ service['name'] }}</h4>
+                <p class="text-muted">{{ service['text'] }}</p>
             </div>
         </div>
 
