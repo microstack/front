@@ -28,91 +28,26 @@
     {% endblock %}
 
 
-     {% block services %}
-         <div class="col-md-4 col-sm-6 services-item">
-           <a href="#servicesModal1" class="services-link" data-toggle="modal">
-                 <div class="services-hover">
-                     <div class="services-hover-content">
-                       <i class="fa fa-plus fa-3x"></i>
-                     </div>
-                 </div>
-                 <img src="img/services/roundicons.png" class="img-responsive" alt="">
-           </a>
-             <div class="services-caption">
-                 <h4>Round Icons</h4>
-                 <p class="text-muted">Graphic Design</p>
-             </div>
-         </div>
-         <div class="col-md-4 col-sm-6 services-item">
-           <a href="#servicesModal2" class="services-link" data-toggle="modal">
-                 <div class="services-hover">
-                     <div class="services-hover-content">
-                       <i class="fa fa-plus fa-3x"></i>
-                     </div>
-                 </div>
-                 <img src="img/services/startup-framework.png" class="img-responsive" alt="">
-           </a>
-             <div class="services-caption">
-                 <h4>Startup Framework</h4>
-                 <p class="text-muted">Website Design</p>
-             </div>
-         </div>
-         <div class="col-md-4 col-sm-6 services-item">
-           <a href="#servicesModal3" class="services-link" data-toggle="modal">
-                 <div class="services-hover">
-                     <div class="services-hover-content">
-                       <i class="fa fa-plus fa-3x"></i>
-                     </div>
-                 </div>
-                 <img src="img/services/treehouse.png" class="img-responsive" alt="">
-           </a>
-             <div class="services-caption">
-                 <h4>Treehouse</h4>
-                 <p class="text-muted">Website Design</p>
-             </div>
-         </div>
-         <div class="col-md-4 col-sm-6 services-item">
-           <a href="#servicesModal4" class="services-link" data-toggle="modal">
-                 <div class="services-hover">
-                     <div class="services-hover-content">
-                       <i class="fa fa-plus fa-3x"></i>
-                     </div>
-                 </div>
-                 <img src="img/services/golden.png" class="img-responsive" alt="">
-           </a>
-             <div class="services-caption">
-                 <h4>Golden</h4>
-                 <p class="text-muted">Website Design</p>
-             </div>
-         </div>
-         <div class="col-md-4 col-sm-6 services-item">
-           <a href="#servicesModal5" class="services-link" data-toggle="modal">
-                 <div class="services-hover">
-                     <div class="services-hover-content">
-                       <i class="fa fa-plus fa-3x"></i>
-                     </div>
-                 </div>
-                 <img src="img/services/escape.png" class="img-responsive" alt="">
-           </a>
-             <div class="services-caption">
-                 <h4>Escape</h4>
-                 <p class="text-muted">Website Design</p>
-             </div>
-         </div>
-         <div class="col-md-4 col-sm-6 services-item">
-           <a href="#servicesModal6" class="services-link" data-toggle="modal">
-                 <div class="services-hover">
-                     <div class="services-hover-content">
-                       <i class="fa fa-plus fa-3x"></i>
-                     </div>
-                 </div>
-                 <img src="img/services/dreams.png" class="img-responsive" alt="">
-           </a>
-             <div class="services-caption">
-                 <h4>Dreams</h4>
-                 <p class="text-muted">Website Design</p>
-             </div>
-         </div>
+    {% block services %}
+    {% for service in services %}
+
+        <div class="col-md-4 col-sm-6 services-item">
+            <a href="#servicesModal{{ loop.index }}" class="services-link" data-toggle="modal">
+                  <div class="services-hover">
+                      <div class="services-hover-content">
+                        <i class="fa fa-plus fa-3x"></i>
+                      </div>
+                  </div>
+                  <img src="img/services/{{ service.img_file }}" class="img-responsive" alt="">
+            </a>
+            <div class="services-caption">
+                <h4>{{ service.name }}</h4>
+                <p class="text-muted">{{ service.text }}</p>
+            </div>
+        </div>
+
+    {% endfor %}
+
     {% endblock %}
 
 
