@@ -245,7 +245,7 @@ fieldset[disabled] .btn-xl.active {
 
 #header:after {
   content: "";
-  background-image: url('http://hockleyphoto.com/wp-content/uploads/2013/05/oregon-convention-center-event-photography-1-950x629@2x.jpg');
+  background-image: url('../img/header-bg.jpg');
   background-repeat: no-repeat;
   position: absolute;
 
@@ -764,3 +764,5 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #fed136;
 }
+
+.
