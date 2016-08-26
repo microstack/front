@@ -24,13 +24,12 @@ def movie_archive():
 
 @app.route('/movies/')
 def movie_mainpage():
-    latest_text = response_text_from_request(API_GW_BASE_URL, '/movies/latest/')
+    latest_text = response_text_from_request(API_GW_BASE_URL,
+        '/movies/latest/')
     grade_text = response_text_from_request(API_GW_BASE_URL, '/movies/grade/')
 
+    latest_movies = json.loads(latest_text)
+    high_grade_movies = json.loads(grade_text)
 
-    latest_objects = json.loads(latest_text)
-    grade_objects = json.loads(grade_text)
-
-    latest_thumbnails = list(map(lambda x: x['thumbnail'], latest_objects))
-    return render_template('index.html', latest_thumbnails=latest_thumbnails,
-        high_grades=grade_objects)
+    return render_template('index.html', latest_movies=latest_movies,
+        high_grade_movies=high_grade_movies)

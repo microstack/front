@@ -56,9 +56,9 @@
     </nav>
 
     <div class="container-main">
-      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
         <ol class="carousel-indicators">
-          {% for thumbnail in latest_thumbnails %}
+          {% for _ in latest_movies %}
             {% if loop.index0 == 0 %}
               <li data-target="#carousel-example-generic" data-slide-to="{{ loop.index0 }}" class="active"></li>
             {% else %}
@@ -67,14 +67,30 @@
           {% endfor %}
         </ol>
         <div class="carousel-inner">
-          {% for thumbnail in latest_thumbnails %}
+
+        {% for movie in latest_movies %}
             {% if loop.index0 == 0 %}
               <div class="item active"> 
             {% else %}
               <div class="item">
-            {% endif %}
-              <img class="slide-image" src="{{ thumbnail }}" alt="">
-              </div>
+        {% endif %}
+
+            <div class="carousel-content">
+                <div class="heading">
+                    <p>오늘의 영화</p>
+                </div>
+                <div class="title">
+                    <a href=""><p>{{ movie.title }}</p></a>
+                </div>
+                <div class="info">
+                    <p>네티즌 평점: {{ movie.netizen_grade }}</p> 
+                    <p>{{ movie.release_date }}, {{ movie.age }}</p>
+                    <p>감독: {{ movie.director }}</p>
+                </div>
+            </div>
+ 
+            <img class="slide-image" src="{{ movie.thumbnail }}" alt="">
+            </div>
           {% endfor %}
 
         </div>
@@ -100,7 +116,7 @@
                 <h1><a href="#">네티즌이 선정한 최고의 한국 영화</a></h1>
              </div>
                
-           {% for movie in high_grades %}
+           {% for movie in high_grade_movies %}
            <div class="col-sm-4 col-lg-4 col-md-4">
                <div class="thumbnail">
                  <img src="{{ movie.thumbnail }}" alt="">

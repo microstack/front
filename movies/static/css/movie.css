@@ -7,6 +7,10 @@
 body {
 }
 
+a {
+  text-decoration: none !important;
+}
+
 .slide-image {
     width: 100%;
 }
@@ -18,6 +22,10 @@ body {
 .carousel-control,
 .item {
     border-radius: 4px;
+}
+
+.item {
+    position: relative;
 }
 
 @media only screen and (max-width: 599px) {
@@ -40,7 +48,7 @@ body {
 	/* For desktop: */
 	.carousel-control,
 	.item {
-	    max-height: 800px;
+	    max-height: 650px;
 	}
 }
 
@@ -87,4 +95,69 @@ footer {
 .navbar-inner {
 	background: transparent;
     background-color:rgba(0, 0, 0, 0.7);
+}
+
+.carousel-content {
+  position: absolute;
+  padding-left: 20%;
+  z-index: 2;
+  bottom: 10%;
+}
+
+.carousel-content .heading {
+  color: white; 
+  font: 22px/40px Helvetica, Sans-Serif; 
+}
+.carousel-content .title {
+  color: white; 
+  font: 32px/48px Helvetica, Sans-Serif; 
+}
+.carousel-content a {
+  color: white; 
+}
+.carousel-content a:visited {
+    color: white;
+}
+.carousel-content a:hover {
+    color: hotpink;
+}
+.carousel-content a:active {
+    color: blue;
+}
+.carousel-content .info {
+  color: white; 
+  font: 14px/20px Helvetica, Sans-Serif;
+}
+
+.carousel-inner img {
+	filter: brightness(80%);
+	-webkit-filter: brightness(80%);
+	-moz-filter: brightness(80%);
+	-o-filter: brightness(80%);
+	-ms-filter: brightness(80%);
+}
+
+/* http://www.bootply.com/86170 */
+.carousel-fade .carousel-inner .item {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-property: opacity;
+}
+.carousel-fade .carousel-inner .active {
+  opacity: 1;
+}
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+  opacity: 1;
+}
+.carousel-fade .carousel-control {
+  z-index: 2;
 }
