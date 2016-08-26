@@ -5,6 +5,7 @@
  */
 
 body {
+  background-color: WhiteSmoke;
 }
 
 a {
@@ -86,10 +87,7 @@ footer {
 
 .container-main {
     position: relative;
-}
-
-._pad-70 {
-    padding-top: 70px;
+    padding-bottom: 50px;
 }
 
 .navbar-inner {
@@ -164,4 +162,8 @@ footer {
 
 .navbar-brand span {
   color: hotpink;
+}
+strong {
+  color: hotpink;
+
 }

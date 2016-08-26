@@ -52,7 +52,7 @@
 {% endblock %}
 {% block netizen_movie %}
     <!-- Page Content -->
-    <div class="container _pad-70">
+    <div class="container">
 
       <div class="row">
 
@@ -60,9 +60,7 @@
 
           <div class="row">
 
-            <div class="col-md12">
-                <h1><a href="#">네티즌이 선정한 최고의 한국 영화</a></h1>
-             </div>
+            <h2><strong>네티즌</strong>이 선정한 최고의 한국 영화</h2>
                
            {% for movie in high_grade_movies %}
            <div class="col-sm-4 col-lg-4 col-md-4">
@@ -85,7 +83,7 @@
            {% endfor %}
 
             <div class="col-sm-4 col-lg-4 col-md-4">
-               <h1><a href="#">더 많은 영화가 궁금하세요?</a>
+               <h1>더 많은 영화가 궁금하세요?
                </h1>
                <p></p>
                <a class="btn btn-primary" target="_blank" href="#">더보기</a>
@@ -100,7 +98,7 @@
 
 {% block genre_movie %}
 
-    <div class="container _pad-70">
+    <div class="container">
 
       <div class="row">
 
@@ -109,7 +107,7 @@
           <div class="row">
 
             <div class="col-md12">
-                <h1><a href="#">{{ genre }} 영화 좋아하세요?</a></h1>
+              <h2><strong>{{ genre }}</strong> 영화 좋아하세요?</h2>
              </div>
                
            {% for movie in genre_movies %}
