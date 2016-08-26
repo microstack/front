@@ -161,3 +161,7 @@ footer {
 .carousel-fade .carousel-control {
   z-index: 2;
 }
+
+.navbar-brand span {
+  color: hotpink;
+}
