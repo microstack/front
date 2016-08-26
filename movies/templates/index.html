@@ -84,21 +84,66 @@
            </div>
            {% endfor %}
 
-             <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="col-sm-4 col-lg-4 col-md-4">
                <h1><a href="#">더 많은 영화가 궁금하세요?</a>
                </h1>
                <p></p>
                <a class="btn btn-primary" target="_blank" href="#">더보기</a>
-           </div>
-               
-                
             </div>
-
         </div>
-
+        </div>
       </div>
-
     </div>
     <!-- /.container -->
 
-    {% endblock %}
+{% endblock %}
+
+{% block genre_movie %}
+
+    <div class="container _pad-70">
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="row">
+
+            <div class="col-md12">
+                <h1><a href="#">{{ genre }} 영화 좋아하세요?</a></h1>
+             </div>
+               
+           {% for movie in genre_movies %}
+           <div class="col-sm-4 col-lg-4 col-md-4">
+               <div class="thumbnail">
+                 <img src="{{ movie.thumbnail }}" alt="">
+                 <div class="caption">
+                   <h4 class="pull-right">{{ movie.genres }}</h4>
+                   <h4><a href="#">{{ movie.title }}</a>
+                   </h4>
+                   <p>{{ movie.story }}</p>
+                 </div>
+                 <div class="ratings">
+                   <p class="pull-right">리뷰 남기기</p>
+                   <p>
+                     네티즌 평점 : {{ movie.netizen_grade }}
+                   </p>
+                 </div>
+               </div>
+           </div>
+           {% endfor %}
+
+            <div class="col-sm-4 col-lg-4 col-md-4">
+               <h1><a href="#">더 많은 영화가 궁금하세요?</a>
+               </h1>
+               <p></p>
+               <a class="btn btn-primary" target="_blank" href="#">더보기</a>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.container -->
+
+{% endblock %}
+
+

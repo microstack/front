@@ -26,10 +26,22 @@ def movie_archive():
 def movie_mainpage():
     latest_text = response_text_from_request(API_GW_BASE_URL,
         '/movies/latest/')
-    grade_text = response_text_from_request(API_GW_BASE_URL, '/movies/grade/')
-
     latest_movies = json.loads(latest_text)
+
+    grade_text = response_text_from_request(API_GW_BASE_URL, '/movies/grade/')
     high_grade_movies = json.loads(grade_text)
 
+    '''
+    It should loads thegenre movies for user selection using AJAX, later.
+    But for now, it loads second query movies about genre.
+    '''
+    genres_text = response_text_from_request(API_GW_BASE_URL, '/movies/genres/')
+    genres = json.loads(genres_text)
+    genre = genres[1]['name']
+    genre_movies_text = response_text_from_request(API_GW_BASE_URL,
+        '/movies/genres/%s/' % genre)
+    genre_movies = json.loads(genre_movies_text)
+
     return render_template('index.html', latest_movies=latest_movies,
-        high_grade_movies=high_grade_movies)
+        high_grade_movies=high_grade_movies, genre_movies=genre_movies,
+        genre=genre)
