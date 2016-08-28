@@ -30,7 +30,14 @@ def bill_detail(id):
     resource = '/politics/bill/%s' % id
     bill_text = response_text_from_request(API_GW_BASE_URL, resource)
     bill = json.loads(bill_text)
-    summary_list = filter(None, bill['summary'].split('■'))
+
+    summary_list = []
+    if bill['summary'] is None:
+        text = '해당 의안에 대한 정보는 준비중입니다.'
+        summary_list.append(text)
+    else:
+        summary_list = filter(None, bill['summary'].split('■'))
+
     bill['summary_list'] = summary_list
 
     return render_template('post.html', bill=bill)
