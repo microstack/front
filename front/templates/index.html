@@ -29,20 +29,20 @@
 
     <!-- section2: services -->
     {% block services %}
-    {% for service in services %}
+    {% for service_info in available_services_info %}
 
-        <div class="col-md-4 col-sm-6 services-item">
-            <a href="#servicesModal{{ service.tag }}" class="services-link" data-toggle="modal">
+        <div class="col-md-3 col-sm-4 services-item">
+            <a href="#servicesModal{{ service_info.tag }}" class="services-link" data-toggle="modal">
                   <div class="services-hover">
                       <div class="services-hover-content">
                         <i class="fa fa-plus fa-3x"></i>
                       </div>
                   </div>
-                  <img src="{{ url_for('static', filename='img/services/') }}{{ service['img_file'] }}" class="img-responsive" alt="">
+                  <img class="img-service" src="{{ url_for('static', filename='img/services/') }}{{ service_info['img_file'] }}" class="img-responsive" alt="">
             </a>
             <div class="services-caption">
-                <h4>{{ service['name'] }}</h4>
-                <p class="text-muted">{{ service['text'] }}</p>
+                <h4>{{ service_info['name'] }}</h4>
+                <p class="text-muted">{{ service_info['text'] }}</p>
             </div>
         </div>
 
