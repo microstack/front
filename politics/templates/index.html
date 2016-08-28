@@ -7,7 +7,8 @@
   <div class="post-preview">
       <a href="post.html">
           <h2 class="post-title">
-            <a href="">{{ bill['name'] }}</a>
+            <a href="{{ url_for('bill_detail', id=bill['id']) }}">{{ bill['name'] }}
+            </a>
           </h2>
           <h3 class="post-subtitle">
             {{ bill['sponsor'] }}

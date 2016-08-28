@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block contents %}
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+              <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 class="section-heading">의안</h2>
+                <p>{{ bill.summary_main }} </p>
+                <p>{{ bill.summary_reason }} </p>
+                <blockquote>
+                  본 데이터는 "Team POPONG"으로부터 제공받은 데이터입니다. 해당 저작권은 Liscense : CC-BY 4.0 하에, 그리고 출처를 공개한다는 조건 하에 사용 가능합니다.
+                  대한민국 정치의 모든것, Politics in Korea", http://pokr.kr/
+                </blockquote>
+
+                <p>본 의안은 
+                  "{{ bill['assembly_id'] }}"대 국회 중 
+                  발의자 "{{ bill['sponsor'] }}"로 부터 "{{ bill['proposed_date'] }}"에 제안되어 현재 
+                  {% if bill['is_processed'] == true %}
+                    처리가 완료되었습니다.
+                  {% else %}
+                    진행중인 의안입니다.
+                  {% endif %}                  
+                </p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+{% endblock %}
