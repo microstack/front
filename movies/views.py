@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import requests
 import os
 import json
@@ -11,9 +14,34 @@ app = Flask(__name__)
 
 
 def response_text_from_request(base_url, resource):
-    response = requests.get(base_url + resource)
+    try:
+        response = requests.get(base_url+resource)
+    except requests.ConnectionError:
+        text = "{'error': 'ConnectionError'}"
+        return text
+
+    if response.status_code != 200:
+        text = "{'error': 'Statuscode : %s' % response.status_code}"
+        return text
+
     text = response.text
     return text
+
+
+def objects_from_request(base_url, resource):
+    text = response_text_from_request(base_url, resource)
+    objects = json.loads(text)
+    return objects
+
+
+def is_error_in_objects(objects):
+    for key in objects.keys():
+        if isinstance(objects[key], list):
+            continue
+
+        if objects[key].get('error'):
+            return True
+    return False
 
 
 @app.route('/movies/archive/')
@@ -24,24 +52,24 @@ def movie_archive():
 
 @app.route('/movies/')
 def movie_mainpage():
-    latest_text = response_text_from_request(API_GW_BASE_URL,
-        '/movies/latest/')
-    latest_movies = json.loads(latest_text)
-
-    grade_text = response_text_from_request(API_GW_BASE_URL, '/movies/grade/')
-    high_grade_movies = json.loads(grade_text)
+    objects = dict()
+    latest_movies = objects_from_request(API_GW_BASE_URL, '/movies/latest/')
+    high_grade_movies = objects_from_request(API_GW_BASE_URL, 
+        '/movies/grade/')
 
     '''
     It should loads thegenre movies for user selection using AJAX, later.
     But for now, it loads second query movies about genre.
     '''
-    genres_text = response_text_from_request(API_GW_BASE_URL, '/movies/genres/')
-    genres = json.loads(genres_text)
-    genre = genres[1]['name']
-    genre_movies_text = response_text_from_request(API_GW_BASE_URL,
+    genre = '스릴러'
+    genre_movies = objects_from_request(API_GW_BASE_URL,
         '/movies/genres/%s/' % genre)
-    genre_movies = json.loads(genre_movies_text)
 
-    return render_template('index.html', latest_movies=latest_movies,
-        high_grade_movies=high_grade_movies, genre_movies=genre_movies,
-        genre=genre)
+    objects['latest_movies'] = latest_movies
+    objects['high_grade_movies'] = high_grade_movies
+    objects['genre_movies'] = genre_movies
+
+    if is_error_in_objects(objects):
+        return render_template('error.html')
+
+    return render_template('index.html', objects=objects)

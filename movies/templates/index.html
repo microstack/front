@@ -4,7 +4,7 @@
     <div class="container-main">
       <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel">
         <ol class="carousel-indicators">
-          {% for _ in latest_movies %}
+          {% for _ in objects['latest_movies'] %}
             {% if loop.index0 == 0 %}
               <li data-target="#carousel-example-generic" data-slide-to="{{ loop.index0 }}" class="active"></li>
             {% else %}
@@ -14,7 +14,7 @@
         </ol>
         <div class="carousel-inner">
 
-        {% for movie in latest_movies %}
+        {% for movie in objects['latest_movies'] %}
             {% if loop.index0 == 0 %}
               <div class="item active"> 
             {% else %}
@@ -62,7 +62,7 @@
 
             <h2><strong>네티즌</strong>이 선정한 최고의 한국 영화</h2>
                
-           {% for movie in high_grade_movies %}
+           {% for movie in objects['high_grade_movies'] %}
            <div class="col-sm-4 col-lg-4 col-md-4">
                <div class="thumbnail">
                  <img src="{{ movie.thumbnail }}" alt="">
@@ -110,7 +110,7 @@
               <h2><strong>{{ genre }}</strong> 영화 좋아하세요?</h2>
              </div>
                
-           {% for movie in genre_movies %}
+           {% for movie in objects['genre_movies'] %}
            <div class="col-sm-4 col-lg-4 col-md-4">
                <div class="thumbnail">
                  <img src="{{ movie.thumbnail }}" alt="">

@@ -165,5 +165,9 @@ footer {
 }
 strong {
   color: hotpink;
+}
 
+.container-error {
+    position: relative;
+    padding: 100px 40px 100px 40px;/* t r b l */
 }
