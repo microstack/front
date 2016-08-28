@@ -1,3 +1,6 @@
+import requests
+import json
+
 from flask import render_template
 from flask import Flask
 
@@ -12,6 +15,10 @@ def response_text_from_request(base_url, resource):
     return text
 
 
-@app.route('/politics/')
+@app.route('/politics/bill/')
 def politic_mainpage():
-    return render_template('index.html')
+    bill_text = response_text_from_request(API_GW_BASE_URL, '/politics/bill/')
+    items = json.loads(bill_text)
+    bill_list = items['items']
+
+    return render_template('index.html', bill_list=bill_list)
