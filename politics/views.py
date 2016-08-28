@@ -30,8 +30,7 @@ def bill_detail(id):
     resource = '/politics/bill/%s' % id
     bill_text = response_text_from_request(API_GW_BASE_URL, resource)
     bill = json.loads(bill_text)
-    _, summary_reason, summary_main = bill['summary'].split('■')
-    bill['summary_main'] = summary_main
-    bill['summary_reason'] = summary_reason
+    summary_list = filter(None, bill['summary'].split('■'))
+    bill['summary_list'] = summary_list
 
     return render_template('post.html', bill=bill)
