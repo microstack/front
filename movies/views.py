@@ -36,7 +36,7 @@ def objects_from_request(base_url, resource):
 
 def is_error_in_objects(objects):
     for key in objects.keys():
-        if isinstance(objects[key], list):
+        if isinstance(objects[key], (list, str)):
             continue
 
         if objects[key].get('error'):
@@ -68,6 +68,7 @@ def movie_mainpage():
     objects['latest_movies'] = latest_movies
     objects['high_grade_movies'] = high_grade_movies
     objects['genre_movies'] = genre_movies
+    objects['genre'] = genre
 
     if is_error_in_objects(objects):
         return render_template('error.html')
