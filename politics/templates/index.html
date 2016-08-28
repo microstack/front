@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_index.html" %}
 
 {% block posts %}
 
@@ -7,7 +7,7 @@
   <div class="post-preview">
       <a href="post.html">
           <h2 class="post-title">
-            {{ bill['name'] }}
+            <a href="">{{ bill['name'] }}</a>
           </h2>
           <h3 class="post-subtitle">
             {{ bill['sponsor'] }}
