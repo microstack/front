@@ -584,7 +584,7 @@ figure {
 .days {
   padding-bottom: 40px;
 }
-.days .row [class*="col-"]:nth-child(2) .day  {
+.days .row [class*="col-"]:nth-child(2) .day {
     border-width: 0 1px 0 1px;
     border-style: solid;
     border-color: #eaeaea;
@@ -602,10 +602,47 @@ figure {
 	background: #eaeaea;
 }
 
-.day {
+.day, .area {
 	padding: 10px 0px;
 	text-align: center;
+}
+
+.day {
   background-color: white;
+}
+
+.area {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  background: center center;
+  background-attachment: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.area:after {
+  content: "";
+  background-image: url('../img/header-bg.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+
+  z-index: -1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  opacity: 0.1;
+}
+
+.area span {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .day h1 {
