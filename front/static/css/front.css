@@ -341,6 +341,7 @@ section h3.section-subheading {
   transition: all ease 0.5s;
   -webkit-transition: all ease 0.5s;
   -moz-transition: all ease 0.5s;
+  border-radius: 2px;
 }
 #services .services-item .services-link .services-hover:hover {
   opacity: 1;
@@ -368,6 +369,7 @@ section h3.section-subheading {
   background-color: LightGrey;
   text-align: center;
   padding: 25px;
+  border-radius: 2px;
 }
 #services .services-item .services-caption h4 {
   text-transform: none;

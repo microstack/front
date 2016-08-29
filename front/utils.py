@@ -46,7 +46,11 @@ def get_available_services(service_data=service_data):
     available_services = []
     services = get_services(service_data)
     for key in services.keys():
-        response = requests.get(services[key])
+        try:
+            response = requests.get(services[key])
+        except requests.ConnectionError:
+            continue
+ 
         if response.status_code == 200:
             text = response.text
             if text.startswith('{"error":'):
