@@ -25,14 +25,14 @@ def bill_list():
     return render_template('index.html', bill_list=bill_list)
 
 
-@app.route('/politics/bill/<int:id>/')
+@app.route('/politics/bill/<string:id>/')
 def bill_detail(id):
     resource = '/politics/bill/%s' % id
     bill_text = response_text_from_request(API_GW_BASE_URL, resource)
     bill = json.loads(bill_text)
 
     summary_list = []
-    if bill['summary'] is None:
+    if bill.get('summary') is None:
         text = '해당 의안에 대한 정보는 준비중입니다.'
         summary_list.append(text)
     else:
