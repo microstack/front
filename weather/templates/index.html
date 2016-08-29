@@ -1,1 +1,52 @@
 {% extends "base_index.html" %}
+
+{% block contents %}
+
+    <div class="container">
+      <div class="row">
+
+			<div class="col-sm-12">
+				<div id="card" class="weater">
+					<div class="city-selected">
+						<article>
+
+							<div class="info">
+								<div class="city"><span>도시:</span> 서울</div>
+
+								<div class="temp">3°</div>
+
+              </div>
+              <div class="forecast-summary">
+                <p>
+                  기압골의 영향으로 9월 1일은 비가 오겠고, 그 밖의 날은 고기압의 가장자리에 들어 구름이 많겠습니다.<br />기온은 전반에는 평년(최저기온 : 17~20도, 최고기온 : 26~29도)과 비슷하거나 조금 낮겠고, 후반에는 비슷하거나 조금 높겠습니다.<br />강수량은 평년(4~11mm)보다 조금 많겠습니다.<br />서해중부해상의 물결은 9월 1일에는 1.5~2.5m로 높게 일겠고, 그 밖의 날은 1.0~2.0m로 일겠습니다.
+                </p>
+              </div>
+
+							</div>
+
+						</article>
+						
+						<figure></figure>
+					</div>
+
+					<div class="days">
+            <div class="row row-no-gutter">
+
+              {% for i in range(6) %}
+							<div class="col-md-2">
+                <div class="day">
+                  <span class="date">09-01</span>
+                  <h1>Monday</h1>
+                  <i class="wi wi-rain-wind"></i>
+                  <span>25° / 29° </span>
+								</div>
+							</div>
+              {% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
