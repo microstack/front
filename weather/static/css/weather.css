@@ -450,7 +450,10 @@ body {
 	-moz-transition: all 0.5s ease;
 	-ms-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;	
+	transition: all 0.5s ease;
+}
+#card {
+  margin-bottom: 40px;
 }
 
 .city-selected {
@@ -578,6 +581,9 @@ figure {
     transition: all 0.5s ease;
 }
 
+.days {
+  padding-bottom: 40px;
+}
 .days .row [class*="col-"]:nth-child(2) .day  {
     border-width: 0 1px 0 1px;
     border-style: solid;

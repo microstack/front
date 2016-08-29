@@ -5,7 +5,7 @@
     <div class="container">
       <div class="row">
 
-			<div class="col-sm-12">
+        <div class="col-sm-12">
 				<div id="card" class="weater">
 					<div class="city-selected">
 						<article>
@@ -32,6 +32,11 @@
 					<div class="days">
             <div class="row row-no-gutter">
 
+              <div class="col-md-12">
+               서울 
+                
+              </div>
+ 
               {% for i in range(6) %}
 							<div class="col-md-2">
                 <div class="day">
@@ -40,12 +45,37 @@
                   <i class="wi wi-rain-wind"></i>
                   <span>25° / 29° </span>
 								</div>
-							</div>
+              </div>
+
               {% endfor %}
 						</div>
-					</div>
-				</div>
-			</div>
+          </div>
+
+					<div class="days">
+            <div class="row row-no-gutter">
+
+              <div class="col-md-12">
+               인천 
+                
+              </div>
+ 
+              {% for i in range(6) %}
+							<div class="col-md-2">
+                <div class="day">
+                  <span class="date">09-01</span>
+                  <h1>Monday</h1>
+                  <i class="wi wi-rain-wind"></i>
+                  <span>25° / 29° </span>
+								</div>
+              </div>
+
+              {% endfor %}
+						</div>
+          </div>
+
+
+        </div>
+      </div>
 		</div>
 	</div>
 
