@@ -544,8 +544,8 @@ article {
 }
 
 
-.temp {
-	font-size: 35px;
+.temp, .weekday, .first_day {
+	font-size: 30px;
 	display: block;
 	position: relative;
 	font-weight: bold;

@@ -12,13 +12,21 @@
 
 							<div class="info">
                 <div class="city"><span>도시:</span>
-                  {{ objects['weather'][0]['city'] }}
+                  {{ objects['main_weather']['city'] }}
+                </div>
+
+                <div class="first_day">
+                  {{ objects['main_weather']['date'][5:] }}
                 </div>
 
                 <div class="temp">
-                  {{ objects['weather'][0]['min_temparature'] }}° /
-                  {{ objects['weather'][0]['max_temparature'] }}°
+                  {{ objects['main_weather']['min_temparature'] }}° /
+                  {{ objects['main_weather']['max_temparature'] }}°
                 </div>
+                <div class="weekday">
+                  {{ objects['first_weekday'] }}
+                </div>
+
               </div>
               <div class="forecast-summary">
                 <p>
@@ -32,53 +40,37 @@
 
 						</article>
 						
-						<figure></figure>
-					</div>
+				  <figure></figure>
+        </div>
 
+          {% for weathers in objects['partial_weather'] %}
+	
 					<div class="days">
             <div class="row row-no-gutter">
                 <div class="area">
-                  <span>서울</span>
+                  <span>{{ weathers[0]['city'] }}</span>
                 </div>
  
-              {% for i in range(6) %}
+              {% for day in weathers %}
 							<div class="col-md-2">
                 <div class="day">
-                  <span class="date">09-01</span>
-                  <h1>Monday</h1>
+                  <!-- list comprehension takes many time. needed to fix,
+                  but for now. it will be 'mm-dd'
+                  -->
+                  <span class="date"><strong>{{ day['date'][5:] }}</strong></span>
+                  <h1>{{ objects['weekdays'][loop.index0] }}</h1>
                   <i class="wi wi-rain-wind"></i>
-                  <span>25° / 29° </span>
+                  <span><strong>
+                  {{ day['min_temparature'] }}° /
+                  {{ day['max_temparature'] }}°
+                  </span></strong>
 								</div>
               </div>
 
               {% endfor %}
 						</div>
           </div>
-
-					<div class="days">
-            <div class="row row-no-gutter">
-
-              <div class="col-md-12">
-                <div class="area">
-                  <span>인천</span>
-                </div>
-                
-              </div>
- 
-              {% for i in range(6) %}
-							<div class="col-md-2">
-                <div class="day">
-                  <span class="date">09-01</span>
-                  <h1>Monday</h1>
-                  <i class="wi wi-rain-wind"></i>
-                  <span>25° / 29° </span>
-								</div>
-              </div>
-
-              {% endfor %}
-						</div>
-          </div>
-
+          {% endfor %}
 
         </div>
       </div>
