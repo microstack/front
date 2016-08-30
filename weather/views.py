@@ -16,3 +16,10 @@ def weather_mainpage():
     objects = get_weather_objects()
 
     return render_template('index.html', objects=objects)
+
+
+@app.route('/weather/<string:date>/')
+def specific_publish_weather(date):
+    objects = get_weather_objects(date)
+
+    return render_template('index.html', objects=objects)

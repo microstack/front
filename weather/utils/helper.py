@@ -53,8 +53,8 @@ def get_weather_objects(date=''):
         publish_resource = '/weather/today/'
 
         if date != '':
-            publish_weather_resource = '/weather/publishes/%s/weather/' % date
-            publish_resource = 'weather/publishes/%s/' % date
+            publish_weather_resource = '/weather/%s/weather/' % date
+            publish_resource = '/weather/%s/' % date
         return publish_weather_resource, publish_resource
 
     publish_weather_resource, publish_resource = get_publish_resources(date)
