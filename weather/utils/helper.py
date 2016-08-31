@@ -111,11 +111,11 @@ def get_weather_objects(date=''):
     publish_weather = objects_from_request(API_GW_BASE_URL,
         publish_weather_resource)
     if publish_weather == []:
-        return publish_weather
+        return []
 
     publish = objects_from_request(API_GW_BASE_URL, publish_resource)
     if publish == []:
-        return publish
+        return []
 
     '''
     weather cities are seperated by 7.
