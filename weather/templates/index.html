@@ -59,7 +59,16 @@
                   -->
                   <span class="date"><strong>{{ day['date'][5:] }}</strong></span>
                   <h1>{{ objects['weekdays'][loop.index0] }}</h1>
-                  <i class="wi wi-rain-wind"></i>
+
+                  <i class="wi  
+                    {% set icon = objects['weather_icons'][day['weather']] %}
+                    {% if icon %}
+                      {{ icon }}
+                    {% else %}
+                      {{ objects['weather_icons'][day['other']] }}
+                    {% endif %}                      
+                  "></i>
+
                   <span><strong>
                   {{ day['min_temparature'] }}° /
                   {{ day['max_temparature'] }}°

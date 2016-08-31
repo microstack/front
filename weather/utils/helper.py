@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from datetime import date, datetime
 import calendar
 import requests
@@ -47,6 +50,22 @@ def is_error_in_objects(objects):
     return False
 
 
+def map_weather_icons_css_with_weather_text():
+    weather_icons = {
+        '구름조금': 'wi-cloud',
+        '구름많음': 'wi-cloudy',
+        '흐림': 'wi-fog',
+        '흐리고 비': 'wi-rain',
+        '구름많고 비': 'wi-rain',
+        '비': 'wi-rain',
+        '소나기': 'wi-showers',
+        '눈': 'wi-snow',
+        '맑음': 'wi-day-sunny',
+        'other': 'wi-cloud',
+    }
+    return weather_icons
+
+
 def get_weather_objects(date=''):
     def get_publish_resources(date):
         publish_weather_resource = '/weather/today/weather/'
@@ -87,5 +106,6 @@ def get_weather_objects(date=''):
     objects['first_weekday'] = weekdays[0]
     objects['weekdays'] = weekdays
     objects['main_weather'] = publish_weather[0]
+    objects['weather_icons'] = map_weather_icons_css_with_weather_text()
 
     return objects
