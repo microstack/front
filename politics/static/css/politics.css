@@ -421,3 +421,8 @@ img::-moz-selection {
 body {
   -webkit-tap-highlight-color: #0085A1;
 }
+
+.container-exception {
+    position: relative;
+    padding: 20px 40px 100px 40px;/* t r b l */
+}
