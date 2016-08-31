@@ -684,7 +684,7 @@ figure {
   }
 }
 
-.container-error {
+.container-exception {
     position: relative;
     padding: 20px 40px 100px 40px;/* t r b l */
 }

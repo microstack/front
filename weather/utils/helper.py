@@ -46,21 +46,35 @@ def objects_from_request(base_url, resource):
     return objects
 
 
+def is_empty_objects(objects):
+    result = False
+    if isinstance(objects, list) and objects == []:
+        result = True
+
+    return result
+
+
 def is_error_in_objects(objects):
-    '''
-    data가 없는 것은 단순 오류라고 할 수는 없다.
-    수정요
-    '''
-    if not isinstance(objects, dict):
-        return True
+    result = False
+    if isinstance(objects, dict):
+        for key in objects.keys():
+            if isinstance(objects[key], (list, str)):
+                continue
 
-    for key in objects.keys():
-        if isinstance(objects[key], (list, str)):
-            continue
+            if objects[key].get('error'):
+                result = True
 
-        if objects[key].get('error'):
-            return True
-    return False
+    return result
+
+
+def get_template_name_from_exception_check(objects, default='index.html'):
+    template_name = default
+    if is_error_in_objects(objects):
+        template_name = 'error.html'
+    if is_empty_objects(objects):
+        template_name = 'no-data.html'
+
+    return template_name
 
 
 def map_weather_icons_css_with_weather_text():
