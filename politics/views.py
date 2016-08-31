@@ -4,40 +4,27 @@ import json
 from flask import render_template
 from flask import Flask
 
-from settings import API_GW_BASE_URL
+from utils import get_bill_list_object, get_bill_detail_object,\
+    get_template_name_from_objects_status
 
 app = Flask(__name__)
 
 
-def response_text_from_request(base_url, resource):
-    response = requests.get(base_url + resource)
-    text = response.text
-    return text
-
-
-@app.route('/politics/bill/')
+@app.route('/politics/')
 def bill_list():
-    resource = '/politics/bill/'
-    bill_text = response_text_from_request(API_GW_BASE_URL, resource)
-    items = json.loads(bill_text)
-    bill_list = items['items']
+    resource = '/politics/'
+    objects = get_bill_list_object(resource)
+    template_name = get_template_name_from_objects_status(objects,
+        'index.html')
+    return render_template(template_name, objects=objects)
 
-    return render_template('index.html', bill_list=bill_list)
 
-
-@app.route('/politics/bill/<string:id>/')
+@app.route('/politics/<string:id>/')
 def bill_detail(id):
-    resource = '/politics/bill/%s' % id
-    bill_text = response_text_from_request(API_GW_BASE_URL, resource)
-    bill = json.loads(bill_text)
+    resource = '/politics/%s' % id
+    objects = get_bill_detail_object(resource)
+    print(objects)
+    template_name = get_template_name_from_objects_status(objects,
+        'post.html')
 
-    summary_list = []
-    if bill.get('summary') is None:
-        text = '해당 의안에 대한 정보는 준비중입니다.'
-        summary_list.append(text)
-    else:
-        summary_list = filter(None, bill['summary'].split('■'))
-
-    bill['summary_list'] = summary_list
-
-    return render_template('post.html', bill=bill)
+    return render_template(template_name, objects=objects)

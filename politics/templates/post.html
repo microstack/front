@@ -8,7 +8,7 @@
             <div class="row">
               <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <h2 class="section-heading">의안</h2>
-                {% for partial in bill['summary_list'] %}
+                {% for partial in objects['bill']['summary_list'] %}
                   <p>{{ partial }} </p>
                   {% endfor %}
                 <blockquote>
@@ -17,10 +17,10 @@
                 </blockquote>
 
                 <p>본 의안은 
-                  "{{ bill['assembly_id'] }}"대 국회 중 
-                  발의자 "{{ bill['sponsor'] }}"로 부터 "{{ bill['proposed_date'] }}"에 제안되어 현재 처리가 
+                  "{{ objects['bill']['assembly_id'] }}"대 국회 중 
+                  발의자 "{{ objects['bill']['sponsor'] }}"로 부터 "{{ objects['bill']['proposed_date'] }}"에 제안되어 현재 처리가 
                   <strong>
-                  {% if bill['is_processed'] == true %}
+                  {% if objects['bill']['is_processed'] == true %}
                     완료된
                   {% else %}
                     진행중인
