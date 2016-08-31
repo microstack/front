@@ -67,13 +67,13 @@ def get_movie_objects():
     latest_movies = objects_from_request(API_GW_BASE_URL, '/movies/latest/')
     if is_error_in_objects(latest_movies):
         data = get_error_type_if_error_in_objects(latest_movies)
-        return latest_movies
+        return data
 
     high_grade_movies = objects_from_request(API_GW_BASE_URL,
         '/movies/grade/')
     if is_error_in_objects(high_grade_movies):
         data = get_error_type_if_error_in_objects(high_grade_movies)
-        return latest_movies
+        return data
 
     '''
     It should loads thegenre movies for user selection using AJAX, later.
@@ -84,7 +84,7 @@ def get_movie_objects():
         '/movies/genres/%s/' % genre)
     if is_error_in_objects(genre_movies):
         data = get_error_type_if_error_in_objects(genre_movies)
-        return latest_movies
+        return data
 
     objects['latest_movies'] = latest_movies
     objects['high_grade_movies'] = high_grade_movies
