@@ -6,11 +6,6 @@ from settings import API_GW_BASE_URL, SERVICE_MOVIE_RESOURCE,\
     SERVICE_POLITICS_RESOURCE, SERVICE_MOVIE_NAME, SERVICE_POLITICS_NAME
 
 
-service_data = [
-    (SERVICE_MOVIE_NAME, SERVICE_MOVIE_RESOURCE),
-    (SERVICE_POLITICS_NAME, SERVICE_POLITICS_RESOURCE)
-]
-
 movies_info = {
     'img_file': 'movies.png', 'name': 'Micro Movie', 'text': 'lorem lorem',
     'tag': 'Movie'
@@ -21,10 +16,26 @@ politics_info = {
     'text': 'lorem lorem', 'tag': 'Politics'
 }
 
-services_info = {
-    SERVICE_MOVIE_NAME: movies_info,
-    SERVICE_POLITICS_NAME: politics_info,
+weather_info = {
+    'img_file': 'weather.png', 'name': 'Micro Weather',
+    'text': 'lorem lorem', 'tag': 'Weather'
 }
+
+services_info = [
+    movies_info,
+    politics_info,
+    weather_info
+]
+
+'''
+"""
+Getting the available service info's takes a long time. And it takes more when
+it is realtime. Therefore it is skipped for now.
+"""
+service_data = [
+    (SERVICE_MOVIE_NAME, SERVICE_MOVIE_RESOURCE),
+    (SERVICE_POLITICS_NAME, SERVICE_POLITICS_RESOURCE)
+]
 
 
 def get_services(service_data):
@@ -44,6 +55,7 @@ def get_services(service_data):
 
 def get_available_services(service_data=service_data):
     available_services = []
+    
     services = get_services(service_data)
     for key in services.keys():
         try:
@@ -56,8 +68,8 @@ def get_available_services(service_data=service_data):
             if text.startswith('{"error":'):
                 continue
 
-            available_services.append(key)
-
+        available_services.append(key)
+    
     return available_services
 
 
@@ -68,3 +80,4 @@ def get_available_services_info(services_info=services_info):
         available_services_info.append(services_info[service])
 
     return available_services_info
+'''
