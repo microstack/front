@@ -167,7 +167,7 @@ strong {
   color: hotpink;
 }
 
-.container-error {
+.container-exception {
     position: relative;
-    padding: 100px 40px 100px 40px;/* t r b l */
+    padding: 60px 40px 100px 40px;/* t r b l */
 }
