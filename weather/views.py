@@ -6,7 +6,8 @@ import json
 from flask import render_template
 from flask import Flask
 
-from utils.helper import get_weather_objects, get_template_name_from_exception_check
+from utils.helper import get_weather_objects,\
+    get_template_name_from_objects_status
 
 app = Flask(__name__)
 
@@ -14,14 +15,16 @@ app = Flask(__name__)
 @app.route('/weather/')
 def weather_mainpage():
     objects = get_weather_objects()
-    template_name = get_template_name_from_exception_check(objects)
+    template_name = get_template_name_from_objects_status(objects,
+        'index.html')
 
-    return render_template('index.html', objects=objects)
+    return render_template(template_name, objects=objects)
 
 
 @app.route('/weather/<string:date>/')
 def specific_publish_weather(date):
     objects = get_weather_objects(date)
-    template_name = get_template_name_from_exception_check(objects)
+    template_name = get_template_name_from_objects_status(objects,
+        'index.html')
 
     return render_template(template_name, objects=objects)

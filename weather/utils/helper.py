@@ -23,60 +23,6 @@ def partial_by_index(list_object, index):
     return iter(list_object, [])
 
 
-def response_text_from_request(base_url, resource):
-    try:
-        response = requests.get(base_url+resource)
-    except requests.ConnectionError:
-        text = '{"error": "ConnectionError"}'
-        return text
-
-    if response.status_code != 200:
-        text = '{"error": "Statuscode %s"}' % response.status_code
- 
-        return text
-
-    text = response.text
- 
-    return text
-
-
-def objects_from_request(base_url, resource):
-    text = response_text_from_request(base_url, resource)
-    objects = json.loads(text)
-    return objects
-
-
-def is_empty_objects(objects):
-    result = False
-    if isinstance(objects, list) and objects == []:
-        result = True
-
-    return result
-
-
-def is_error_in_objects(objects):
-    result = False
-    if isinstance(objects, dict):
-        for key in objects.keys():
-            if isinstance(objects[key], (list, str)):
-                continue
-
-            if objects[key].get('error'):
-                result = True
-
-    return result
-
-
-def get_template_name_from_exception_check(objects, default='index.html'):
-    template_name = default
-    if is_error_in_objects(objects):
-        template_name = 'error.html'
-    if is_empty_objects(objects):
-        template_name = 'no-data.html'
-
-    return template_name
-
-
 def map_weather_icons_css_with_weather_text():
     weather_icons = {
         '구름조금': 'wi-cloud',
@@ -93,7 +39,69 @@ def map_weather_icons_css_with_weather_text():
     return weather_icons
 
 
+
+def response_text_from_request(base_url, resource):
+    text = ''
+
+    try:
+        response = requests.get(base_url+resource)
+    except requests.ConnectionError:
+        text = '{"status": 500, "exception": "ConnectionError"}'
+    else:
+        text = response.text
+    if text == '{}\n':
+        text = '{"status": 404, "exception": "No resource"}'
+
+    return text
+
+
+def objects_from_request(base_url, resource):
+    text = response_text_from_request(base_url, resource)
+    objects = json.loads(text)
+
+    return objects
+
+
+def is_error_in_objects(objects):
+    result = False
+    if isinstance(objects, dict) and objects.get('status'):
+        result = True
+
+    return result
+
+
+def get_status_code_if_error_in_objects(objects):
+    if is_error_in_objects(objects):
+        return objects['status']
+
+    return 200
+
+
+def get_template_name_from_status_code(status_code, default):
+    template_name = default
+
+    if status_code == 500:
+        template_name = 'exceptions/500.html'
+    if status_code == 404:
+        template_name = 'exceptions/404.html'
+
+    return template_name
+
+
+def get_template_name_from_objects_status(objects, default_template_name):
+    status_code = get_status_code_if_error_in_objects(objects)
+
+    template_name = get_template_name_from_status_code(status_code,
+        default_template_name)
+    return template_name
+
+
 def get_weather_objects(date=''):
+    '''
+    It evaluates today publish or specific day publish. It specifiies resource
+    using date
+    '''
+
     def get_publish_resources(date):
         publish_weather_resource = '/weather/today/weather/'
         publish_resource = '/weather/today/'
@@ -107,15 +115,14 @@ def get_weather_objects(date=''):
 
     objects = dict()
 
-    # these exception handlings are hardcoded. it should be refactored.
     publish_weather = objects_from_request(API_GW_BASE_URL,
         publish_weather_resource)
-    if publish_weather == []:
-        return []
+    if is_error_in_objects(publish_weather):
+        return publish_weather
 
     publish = objects_from_request(API_GW_BASE_URL, publish_resource)
-    if publish == []:
-        return []
+    if is_error_in_objects(publish):
+        return publish
 
     '''
     weather cities are seperated by 7.
