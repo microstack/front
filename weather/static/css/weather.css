@@ -683,3 +683,8 @@ figure {
     width: 14.285714285714285714285714285714%;
   }
 }
+
+.container-error {
+    position: relative;
+    padding: 20px 40px 100px 40px;/* t r b l */
+}

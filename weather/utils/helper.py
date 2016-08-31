@@ -27,14 +27,16 @@ def response_text_from_request(base_url, resource):
     try:
         response = requests.get(base_url+resource)
     except requests.ConnectionError:
-        text = "{'error': 'ConnectionError'}"
+        text = '{"error": "ConnectionError"}'
         return text
 
     if response.status_code != 200:
-        text = "{'error': 'Statuscode : %s' % response.status_code}"
+        text = '{"error": "Statuscode %s"}' % response.status_code
+ 
         return text
 
     text = response.text
+ 
     return text
 
 
@@ -45,6 +47,13 @@ def objects_from_request(base_url, resource):
 
 
 def is_error_in_objects(objects):
+    '''
+    data가 없는 것은 단순 오류라고 할 수는 없다.
+    수정요
+    '''
+    if not isinstance(objects, dict):
+        return True
+
     for key in objects.keys():
         if isinstance(objects[key], (list, str)):
             continue
@@ -84,8 +93,15 @@ def get_weather_objects(date=''):
 
     objects = dict()
 
+    # these exception handlings are hardcoded. it should be refactored.
     publish_weather = objects_from_request(API_GW_BASE_URL,
         publish_weather_resource)
+    if publish_weather == []:
+        return publish_weather
+
+    publish = objects_from_request(API_GW_BASE_URL, publish_resource)
+    if publish == []:
+        return publish
 
     '''
     weather cities are seperated by 7.
@@ -95,8 +111,6 @@ def get_weather_objects(date=''):
     num_weekdays = 7
     partial_publish_weather = partial_by_index(publish_weather,
         num_weekdays)
-
-    publish = objects_from_request(API_GW_BASE_URL, publish_resource)
 
     first_date = datetime.strptime(publish_weather[0]['date'], '%Y-%m-%d')
 
