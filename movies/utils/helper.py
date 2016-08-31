@@ -9,13 +9,14 @@ from settings import API_GW_BASE_URL
 
 
 def response_text_from_request(base_url, resource):
+    text = ''
+
     try:
         response = requests.get(base_url+resource)
     except requests.ConnectionError:
-        error_log = 'ConnectionError'
-        return
-
-    text = response.text
+        text = '{"error": "ConnectionError"}'
+    else:
+        text = response.text
     if text == '{}\n':
         text = '{"error": "no data"}'
 
@@ -30,6 +31,7 @@ def objects_from_request(base_url, resource):
 
 def is_error_in_objects(objects):
     result = False
+
     if isinstance(objects, dict) and objects.get('error'):
         result = True
 
@@ -56,6 +58,7 @@ def get_template_name_from_error_type(error_type, default):
 
 def get_template_name_from_objects_status(objects, default_template_name):
     error_type = get_error_type_if_error_in_objects(objects)
+
     template_name = get_template_name_from_error_type(error_type,
         default_template_name)
     return template_name
@@ -66,14 +69,13 @@ def get_movie_objects():
 
     latest_movies = objects_from_request(API_GW_BASE_URL, '/movies/latest/')
     if is_error_in_objects(latest_movies):
-        data = get_error_type_if_error_in_objects(latest_movies)
-        return data
+        return latest_movies
 
     high_grade_movies = objects_from_request(API_GW_BASE_URL,
         '/movies/grade/')
     if is_error_in_objects(high_grade_movies):
         data = get_error_type_if_error_in_objects(high_grade_movies)
-        return data
+        return high_grade_movies
 
     '''
     It should loads thegenre movies for user selection using AJAX, later.
@@ -83,8 +85,7 @@ def get_movie_objects():
     genre_movies = objects_from_request(API_GW_BASE_URL,
         '/movies/genres/%s/' % genre)
     if is_error_in_objects(genre_movies):
-        data = get_error_type_if_error_in_objects(genre_movies)
-        return data
+        return genre_movies
 
     objects['latest_movies'] = latest_movies
     objects['high_grade_movies'] = high_grade_movies
