@@ -14,11 +14,11 @@ def response_text_from_request(base_url, resource):
     try:
         response = requests.get(base_url+resource)
     except requests.ConnectionError:
-        text = '{"error": "ConnectionError"}'
+        text = '{"status": 500, "exception": "ConnectionError"}'
     else:
         text = response.text
     if text == '{}\n':
-        text = '{"error": "no data"}'
+        text = '{"status": 404, "exception": "No resource"}'
 
     return text
 
@@ -26,40 +26,40 @@ def response_text_from_request(base_url, resource):
 def objects_from_request(base_url, resource):
     text = response_text_from_request(base_url, resource)
     objects = json.loads(text)
+
     return objects
 
 
 def is_error_in_objects(objects):
     result = False
-
-    if isinstance(objects, dict) and objects.get('error'):
+    if isinstance(objects, dict) and objects.get('status'):
         result = True
 
     return result
 
 
-def get_error_type_if_error_in_objects(objects):
+def get_status_code_if_error_in_objects(objects):
     if is_error_in_objects(objects):
-        return objects['error']
+        return objects['status']
 
-    return None
+    return 200
 
 
-def get_template_name_from_error_type(error_type, default):
+def get_template_name_from_status_code(status_code, default):
     template_name = default
 
-    if error_type == 'ConnectionError':
-        template_name = 'error.html'
-    if error_type == 'no data':
-        template_name = 'no-data.html'
+    if status_code == 500:
+        template_name = 'exceptions/500.html'
+    if status_code == 404:
+        template_name = 'exceptions/404.html'
 
     return template_name
 
 
 def get_template_name_from_objects_status(objects, default_template_name):
-    error_type = get_error_type_if_error_in_objects(objects)
+    status_code = get_status_code_if_error_in_objects(objects)
 
-    template_name = get_template_name_from_error_type(error_type,
+    template_name = get_template_name_from_status_code(status_code,
         default_template_name)
     return template_name
 
@@ -74,7 +74,6 @@ def get_movie_objects():
     high_grade_movies = objects_from_request(API_GW_BASE_URL,
         '/movies/grade/')
     if is_error_in_objects(high_grade_movies):
-        data = get_error_type_if_error_in_objects(high_grade_movies)
         return high_grade_movies
 
     '''
