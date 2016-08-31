@@ -12,11 +12,11 @@ def response_text_from_request(base_url, resource):
     try:
         response = requests.get(base_url+resource)
     except requests.ConnectionError:
-        text = "{'error': 'ConnectionError'}"
+        text = '{"error": "ConnectionError"}'
         return text
 
     if response.status_code != 200:
-        text = "{'error': 'Statuscode : %s' % response.status_code}"
+        text = '{"error": "Statuscode %s"}' % response.status_code
         return text
 
     text = response.text
