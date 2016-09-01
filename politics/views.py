@@ -23,7 +23,6 @@ def bill_list():
 def bill_detail(id):
     resource = '/politics/%s' % id
     objects = get_bill_detail_object(resource)
-    print(objects)
     template_name = get_template_name_from_objects_status(objects,
         'post.html')
 
