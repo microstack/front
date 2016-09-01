@@ -32,9 +32,13 @@ def objects_from_request(base_url, resource):
 
 
 def is_error_in_objects(objects):
+    '''
+    This style of error checking is dangerous. because data has the same key
+    in the error data key list, needed to change.
+    '''
     result = False
 
-    if isinstance(objects, dict) and objects.get('status'):
+    if isinstance(objects, dict) and objects.get('exception'):
         result = True
 
     return result
