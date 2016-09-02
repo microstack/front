@@ -15,7 +15,7 @@ from settings import API_GW_BASE_URL
 app = Flask(__name__)
 
 
-@app.route('/movies/')
+@app.route('/')
 def movie_mainpage():
     objects = get_movie_objects()
     template_name = get_template_name_from_objects_status(objects,

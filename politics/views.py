@@ -10,7 +10,7 @@ from utils import get_bill_list_object, get_bill_detail_object,\
 app = Flask(__name__)
 
 
-@app.route('/politics/')
+@app.route('/')
 def bill_list():
     resource = '/politics/'
     objects = get_bill_list_object(resource)
@@ -19,7 +19,7 @@ def bill_list():
     return render_template(template_name, objects=objects)
 
 
-@app.route('/politics/<string:id>/')
+@app.route('/<string:id>/')
 def bill_detail(id):
     resource = '/politics/%s' % id
     objects = get_bill_detail_object(resource)
