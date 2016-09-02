@@ -78,8 +78,7 @@ def get_bill_list_object(resource):
 
     items = objects_from_request(API_GW_BASE_URL, resource)
     if is_error_in_objects(items):
-        data = get_status_code_if_error_in_objects(items)
-        return data
+        return items
 
     objects['bill_list'] = items['items']
 
