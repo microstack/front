@@ -1,5 +1,6 @@
 Flask
 requests
+celery
 
 # utils
 ipython
