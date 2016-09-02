@@ -25,7 +25,10 @@ def response_text_from_request(base_url, resource):
 
 def objects_from_request(base_url, resource):
     text = response_text_from_request(base_url, resource)
-    objects = json.loads(text)
+    try:
+        objects = json.loads(text)
+    except ValueError:
+        objects = {"status": 500, "exception": "ValueError"}
 
     return objects
 
