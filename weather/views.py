@@ -12,7 +12,7 @@ from utils.helper import get_weather_objects,\
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/weather/')
 def weather_mainpage():
     objects = get_weather_objects()
     template_name = get_template_name_from_objects_status(objects,
@@ -21,7 +21,7 @@ def weather_mainpage():
     return render_template(template_name, objects=objects)
 
 
-@app.route('/<string:date>/')
+@app.route('/weather/<string:date>/')
 def specific_publish_weather(date):
     objects = get_weather_objects(date)
     template_name = get_template_name_from_objects_status(objects,
