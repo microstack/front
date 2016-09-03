@@ -39,7 +39,6 @@ def map_weather_icons_css_with_weather_text():
     return weather_icons
 
 
-
 def response_text_from_request(base_url, resource):
     text = ''
 
@@ -49,7 +48,8 @@ def response_text_from_request(base_url, resource):
         text = '{"status": 500, "exception": "ConnectionError"}'
     else:
         text = response.text
-    if text == '{}\n':
+
+    if text.startswith('{}'):
         text = '{"status": 404, "exception": "No resource"}'
 
     return text
@@ -62,13 +62,22 @@ def objects_from_request(base_url, resource):
     except ValueError:
         objects = {"status": 500, "exception": "ValueError"}
 
+    if isinstance(objects, dict):
+        server_error_msg = "Internal Server Error"
+        if objects.get("message") == server_error_msg:
+            objects.update({"status": 500})
+
     return objects
 
 
 def is_error_in_objects(objects):
     result = False
-    if isinstance(objects, dict) and objects.get('status'):
-        result = True
+    if isinstance(objects, dict):
+        is_status = objects.get('status')
+        is_exception = objects.get('exception')
+        is_message = objects.get('message')
+        if is_status and (is_exception or is_message):
+            result = True
 
     return result
 

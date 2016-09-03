@@ -17,9 +17,9 @@ def response_text_from_request(base_url, resource):
         text = '{"status": 500, "exception": "ConnectionError"}'
     else:
         text = response.text
-    if text == '{}\n':
-        text = '{"status": 404, "exception": "No resource"}'
 
+    if text.startswith('{}'):
+        text = '{"status": 404, "exception": "No resource"}'
 
     return text
 
@@ -31,18 +31,22 @@ def objects_from_request(base_url, resource):
     except ValueError:
         objects = {"status": 500, "exception": "ValueError"}
 
+    if isinstance(objects, dict):
+        server_error_msg = "Internal Server Error"
+        if objects.get("message") == server_error_msg:
+            objects.update({"status": 500})
+
     return objects
 
 
 def is_error_in_objects(objects):
-    '''
-    This style of error checking is dangerous. because data has the same key
-    in the error data key list, needed to change.
-    '''
     result = False
-
-    if isinstance(objects, dict) and objects.get('exception'):
-        result = True
+    if isinstance(objects, dict):
+        is_status = objects.get('status')
+        is_exception = objects.get('exception')
+        is_message = objects.get('message')
+        if is_status and (is_exception or is_message):
+            result = True
 
     return result
 
