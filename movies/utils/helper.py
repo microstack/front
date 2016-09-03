@@ -18,7 +18,7 @@ def response_text_from_request(base_url, resource):
     else:
         text = response.text
 
-    if text == '{}\n':
+    if text.startswith('{}'):
         text = '{"status": 404, "exception": "No resource"}'
 
     return text
@@ -44,7 +44,8 @@ def is_error_in_objects(objects):
     if isinstance(objects, dict):
         is_status = objects.get('status')
         is_exception = objects.get('exception')
-        if is_status and is_exception:
+        is_message = objects.get('message')
+        if is_status and (is_exception or is_message):
             result = True
 
     return result
@@ -52,9 +53,6 @@ def is_error_in_objects(objects):
 
 def get_status_code_if_error_in_objects(objects):
     if is_error_in_objects(objects):
-        status = objects.get("status")
-        if not status:
-            objects['status'] = 500
         return objects['status']
 
     return 200
