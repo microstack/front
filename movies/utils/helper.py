@@ -35,8 +35,14 @@ def objects_from_request(base_url, resource):
 
 def is_error_in_objects(objects):
     result = False
-    if isinstance(objects, dict) and objects.get('status'):
-        result = True
+    if isinstance(objects, dict):
+        is_status = objects.get('status')
+        is_exception = objects.get('exception')
+        is_message = objects.get('message')
+        server_error_msg = "Internal Server Error"
+
+        if (is_status and is_exception) or is_message == server_error_msg:
+            result = True
 
     return result
 
